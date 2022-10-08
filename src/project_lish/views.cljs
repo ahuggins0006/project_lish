@@ -15,55 +15,37 @@
             :border-radius    "6px"
             :text-align "center"}} "Correct!"])
 
+(defn- good-bye []
+  [:div
+   {:style {:background-color "white"
+            :padding          "16px"
+            :border-radius    "6px"
+            :text-align "center"}} "Wrong answer!"])
+
 (defn radio-component []
   [:fieldset
    [:legend "Select an answer"]
    [:div
-    [:input {:type "radio" :id "a" :name "drone" :on-click #(re-frame/dispatch [::events/navigate :about])}]
+    [:input {:type "radio" :id "a" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
+                                                                                        :child [good-bye]
+                                                                                        :size :small}])}]
     [:label {:for "huey"} "Huey"]]
    [:div
-    [:input {:type "radio" :id "b" :name "drone"}]
+    [:input {:type "radio" :id "b" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
+                                                                                        :child [good-bye]
+                                                                                        :size :small}])}]
     [:label {:for "dewey"} "Dewey"]]
    [:div
-    [:input {:type "radio" :id "c" :name "drone"}]
+    [:input {:type "radio" :id "c" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
+                                                                                        :child [good-bye]
+                                                                                        :size :small}])}]
     [:label {:for "louie"} "Louie"]]
    [:div
-    [:input {:type "radio" :id "d" :name "Lish" :on-click #(re-frame/dispatch [:modal {:show? true
+    [:input {:type "radio" :id "d" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [hello]
                                                                                         :size :small}])}]
     [:label {:for "lish"} "Lish"]]
    ])
-
-;; home
-(defn home-panel []
-  (let [name (re-frame/subscribe [::subs/name])]
-    [:div
-     [:h1
-      {:class (styles/level1)}
-      (str "Hello from " @name ". This is the Home Page."" Git version " config/version)]
-
-     (radio-component)
-     [:div
-      [:a {:on-click #(re-frame/dispatch [::events/navigate :about])}
-       "next"]]
-     [:div
-      [:a {:on-click #(re-frame/dispatch [::events/navigate :q1])}
-       "continue"]]
-     ]))
-
-(defmethod routes/panels :home-panel [] [home-panel])
-
-;; about
-
-(defn about-panel []
-  [:div
-   [:h1 "This is the About Page."]
-
-   [:div
-    [:a {:on-click #(re-frame/dispatch [::events/navigate :home])}
-     "go to Home Page"]]])
-
-(defmethod routes/panels :about-panel [] [about-panel])
 
 ;;modal
 
@@ -104,6 +86,40 @@
       [:div
        (if (:show? @modal)
          [modal-panel @modal])])))
+;; home
+(defn home-panel []
+  (let [name (re-frame/subscribe [::subs/name])]
+    [:div
+     [:h1
+      {:class (styles/level1)}
+      (str "Who's the best in the world?" )]
+
+     (radio-component)
+   ;  [:div
+   ;   [:a {:on-click #(re-frame/dispatch [::events/navigate :about])}
+   ;    "next"]]
+
+     [modal]
+     [:div
+      {:style {:cursor "pointer"}}
+      [:a {:on-click #(re-frame/dispatch [::events/navigate :q1])}
+       "next"]]
+     ]))
+
+(defmethod routes/panels :home-panel [] [home-panel])
+
+;; about
+
+(defn about-panel []
+  [:div
+   [:h1 "This is the About Page."]
+
+   [:div
+    [:a {:on-click #(re-frame/dispatch [::events/navigate :home])}
+     "go to Home Page"]]])
+
+(defmethod routes/panels :about-panel [] [about-panel])
+
 
 ;; question 1
 
@@ -112,9 +128,10 @@
    [:iframe {:width "600" :height "315"
              :src "https://www.youtube.com/embed/tgbNymZ7vqY"}]
    [radio-component]
-   [my-awesome-modal-fn]
+   ;[my-awesome-modal-fn]
    [modal]
    [:div
+    {:style {:cursor "pointer"}}
     [:a {:on-click #(re-frame/dispatch [::events/navigate :home])}
      "home"]]
    ])
