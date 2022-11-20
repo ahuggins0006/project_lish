@@ -38,22 +38,22 @@
     [:input {:type "radio" :id "a" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "huey"} "Huey"]]
+    [:label {:for "huey"} "Enter a PACMN ticket request"]]
    [:div
     [:input {:type "radio" :id "b" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "dewey"} "Dewey"]]
+    [:label {:for "dewey"} "Create a mod in CAMS"]]
    [:div
     [:input {:type "radio" :id "c" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
-                                                                                        :child [good-bye]
-                                                                                        :size :small}])}]
-    [:label {:for "louie"} "Louie"]]
-   [:div
-    [:input {:type "radio" :id "d" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [hello :q2]
                                                                                         :size :small}])}]
-    [:label {:for "lish"} "Lish"]]
+    [:label {:for "louie"} "Send to the PM for review and approval"]]
+   [:div
+    [:input {:type "radio" :id "d" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
+                                                                                        :child [good-bye]
+                                                                                        :size :small}])}]
+    [:label {:for "lish"} "Sign the mod"]]
    ])
 
 (defn q2 []
@@ -151,10 +151,34 @@
     [:label {:for "louie"} "Louie"]]
    [:div
     [:input {:type "radio" :id "d" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
-                                                                                        :child [hello :home]
+                                                                                        :child [hello :end]
                                                                                         :size :small}])}]
     [:label {:for "lish"} "Robby"]]
    ])
+
+(defn q6 []
+  [:fieldset
+   [:legend "Select an answer"]
+   [:div
+    [:input {:type "radio" :id "a" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
+                                                                                        :child [good-bye]
+                                                                                        :size :small}])}]
+    [:label {:for "huey"} "Hue"]]
+   [:div
+    [:input {:type "radio" :id "b" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
+                                                                                        :child [good-bye]
+                                                                                        :size :small}])}]
+    [:label {:for "dewey"} "Dewey"]]
+   [:div
+    [:input {:type "radio" :id "c" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
+                                                                                        :child [good-bye]
+                                                                                        :size :small}])}]
+    [:label {:for "louie"} "Louie"]]
+   [:div
+    [:input {:type "radio" :id "d" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
+                                                                                        :child [hello :video-panel]
+                                                                                        :size :small}])}]
+    [:label {:for "lish"} "Boo Boo"]]])
 ;;modal
 
 
@@ -201,11 +225,11 @@
     [:div
      [:h1
       {:class (styles/level1)}
-      (str "Welcome to Lish's link!" )]
+      (str "Welcome to Contracts - let's get started learning about Modifications." )]
      [:div
       {:style {:cursor "pointer"}}
       [:a {:on-click #(re-frame/dispatch [::events/navigate :q1])}
-       "next"]]
+       "Click Here to Begin!"]]
      ]))
 
 (defmethod routes/panels :home-panel [] [home-panel])
@@ -214,8 +238,7 @@
 
 (defn q1-panel []
   [:div
-   [:iframe {:width "600" :height "315"
-             :src "https://www.youtube.com/embed/tgbNymZ7vqY"}]
+   [:h1 "You just received a mod, what is the first thing you do?"]
    [q1]
    [modal]
    [:div
@@ -230,7 +253,7 @@
 
 (defn q2-panel []
   [:div
-   [:h1 "Who is the greatest in the world?"]
+    [:h1 "After receiving PM approval, what should you do next?"]
    [q2]
    [modal]
    [:div
@@ -244,7 +267,8 @@
 
 (defn q3-panel []
   [:div
-   [:h1 "Who is the biggest in the world?"]
+  [:h1 "When reviewing the mod against CAMS and the previous mod award, "
+   [:br] "what things should you look for first?"]
    [q3]
    [modal]
    [:div
@@ -257,7 +281,7 @@
 
 (defn q4-panel []
   [:div
-   [:h1 "Who stinks?"]
+    [:h1 "After confirming the mod is correct, what should you do next?"]
    [q4]
    [modal]
    [:div
@@ -272,7 +296,7 @@
 
 (defn q5-panel []
   [:div
-   [:h1 "Who is red?"]
+  [:h1 "After signing the mod, what is the last thing you should do?"]
    [q5]
    [modal]
    [:div
@@ -280,6 +304,36 @@
     ]])
 
 (defmethod routes/panels :q5-panel [] [q5-panel])
+
+
+
+;; question 6
+
+(defn q6-panel []
+  [:div
+   ;; place holder question
+   [q6]
+   [modal]
+   [:div
+    {:style {:cursor "pointer"}}]])
+
+(defmethod routes/panels :q6-panel [] [q6-panel])
+
+;; ending video
+
+(defn end-panel []
+  [:div
+   [:h1 "Wrapping up - click play on the video below to view a quick example"
+   [:br] "of how to process a modification for GSA07.MEGAStar."]
+   [:iframe {:width "600" :height "315"
+             :src "https://www.youtube.com/embed/tgbNymZ7vqY"}]
+   [:div
+    {:style {:cursor "pointer"}}
+    [:a {:on-click #(re-frame/dispatch [::events/navigate :home])}
+     "home"]]])
+
+(defmethod routes/panels :end-panel [] [end-panel])
+
 ;; main
 
 (defn main-panel []

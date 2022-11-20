@@ -16,6 +16,8 @@
           "q3"   :q3
           "q4"   :q4
           "q5"   :q5
+          "q6"   :q6
+          "end" :end
           }]))
 
 (defn parse
