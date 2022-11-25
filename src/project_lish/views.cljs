@@ -11,18 +11,20 @@
 (defn- close-modal []
   (re-frame/dispatch [:modal {:show? false :child nil}]))
 
-(defn- hello [next-question]
+(defn- hello [reason next-question]
   [:div
    {:style {:background-color "white"
             :padding          "16px"
             :border-radius    "6px"
-            :text-align "center"}} "Correct!"
+            :text-align "center"}} "Correct! " [:br] reason  
    [:div
     {:style {:cursor "pointer"}}
     [:a {:on-click #(do (close-modal) (re-frame/dispatch [::events/navigate next-question]))}
      "next"]]
    ]
   )
+
+
 
 (defn- good-bye []
   [:div
@@ -33,7 +35,7 @@
 
 (defn q1 []
   [:fieldset
-   [:legend "Select an answer"]
+  
    [:div
     [:input {:type "radio" :id "a" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
@@ -46,7 +48,7 @@
     [:label {:for "dewey"} "Create a mod in CAMS"]]
    [:div
     [:input {:type "radio" :id "c" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
-                                                                                        :child [hello :q2]
+                                                                                        :child [hello "This is my reason!" :q2]
                                                                                         :size :small}])}]
     [:label {:for "louie"} "Send to the PM for review and approval"]]
    [:div
@@ -58,102 +60,102 @@
 
 (defn q2 []
   [:fieldset
-   [:legend "Select an answer"]
+   
    [:div
     [:input {:type "radio" :id "a" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
-                                                                                        :child [good-bye]
+                                                                                        :child [hello "This is my reason!" :q3]
                                                                                         :size :small}])}]
-    [:label {:for "huey"} "Hue"]]
+    [:label {:for "huey"} "Begin review by opening CAMS and the previous Mod or Award"]]
    [:div
     [:input {:type "radio" :id "b" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "dewey"} "Dewey"]]
+    [:label {:for "dewey"} "Send to Contracts Management for review "]]
    [:div
     [:input {:type "radio" :id "c" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "louie"} "Louie"]]
+    [:label {:for "louie"} "Sign the Mod"]]
    [:div
     [:input {:type "radio" :id "d" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
-                                                                                        :child [hello :q3]
+                                                                                        :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "lish"} "Lish"]]
+    [:label {:for "lish"} "Enter a PACMN ticket"]]
    ])
 
 (defn q3 []
   [:fieldset
-   [:legend "Select an answer"]
+   
    [:div
     [:input {:type "radio" :id "a" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "huey"} "Hue"]]
+    [:label {:for "huey"} "Execution date"]]
    [:div
     [:input {:type "radio" :id "b" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
-                                                                                        :child [good-bye]
+                                                                                        :child [hello "This is my reason!" :q4]
                                                                                         :size :small}])}]
-    [:label {:for "dewey"} "Dewey"]]
+    [:label {:for "dewey"} "PoP, Previous Funding Value, Ceiling Value, and Mod number"]]
    [:div
     [:input {:type "radio" :id "c" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "louie"} "Louie"]]
+    [:label {:for "louie"} "Rates and Labor Category changes"]]
    [:div
     [:input {:type "radio" :id "d" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
-                                                                                        :child [hello :q4]
+                                                                                        :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "lish"} "Bib"]]
+    [:label {:for "lish"} "Terms and Conditions changes"]]
    ])
 
 (defn q4 []
   [:fieldset
-   [:legend "Select an answer"]
+   
    [:div
     [:input {:type "radio" :id "a" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "huey"} "Hue"]]
+    [:label {:for "huey"} "Create a Mod in CAMS"]]
    [:div
     [:input {:type "radio" :id "b" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "dewey"} "Dewey"]]
+    [:label {:for "dewey"} "Enter a PACMN ticket"]]
    [:div
     [:input {:type "radio" :id "c" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
-                                                                                        :child [good-bye]
+                                                                                        :child [hello "This is my reason!" :q5]
                                                                                         :size :small}])}]
-    [:label {:for "louie"} "Louie"]]
+    [:label {:for "louie"} "Sign the Mod per the ATO"]]
    [:div
     [:input {:type "radio" :id "d" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
-                                                                                        :child [hello :q5]
+                                                                                        :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "lish"} "Boo Boo"]]
+    [:label {:for "lish"} "Save the Mod in the Contract Folder"]]
    ])
 
 (defn q5 []
   [:fieldset
-   [:legend "Select an answer"]
+  
    [:div
     [:input {:type "radio" :id "a" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "huey"} "Hue"]]
+    [:label {:for "huey"} "Create a Mod in CAMS"]]
    [:div
     [:input {:type "radio" :id "b" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "dewey"} "Dewey"]]
+    [:label {:for "dewey"} "Save the Mod in the Contract Folder"]]
    [:div
     [:input {:type "radio" :id "c" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "louie"} "Louie"]]
+    [:label {:for "louie"} "Enter a PACMN ticket"]]
    [:div
     [:input {:type "radio" :id "d" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
-                                                                                        :child [hello :end]
+                                                                                        :child [hello "This is my reason!" :end]
                                                                                         :size :small}])}]
-    [:label {:for "lish"} "Robby"]]
+    [:label {:for "lish"} "Send the signed Mod to the customer"]]
    ])
 
 (defn q6 []
@@ -224,8 +226,8 @@
   (let [name (re-frame/subscribe [::subs/name])]
     [:div
      [:h1
-      {:class (styles/level1)}
-      (str "Welcome to Contracts - let's get started learning about Modifications." )]
+      {:class :title}
+      (str "Welcome to Contracts - let's get started by learning about Modifications." )]
      [:div
       {:style {:cursor "pointer"}}
       [:a {:on-click #(re-frame/dispatch [::events/navigate :q1])}
@@ -238,7 +240,9 @@
 
 (defn q1-panel []
   [:div
-   [:h1 "You just received a mod, what is the first thing you do?"]
+   [:h1
+    {:class :subtitle}
+    "You just received a mod, what is the first thing you do?"]
    [q1]
    [modal]
    [:div
@@ -253,7 +257,9 @@
 
 (defn q2-panel []
   [:div
-    [:h1 "After receiving PM approval, what should you do next?"]
+    [:h1 
+     {:class :subtitle}
+     "After receiving PM approval, what should you do next?"] 
    [q2]
    [modal]
    [:div
@@ -267,7 +273,9 @@
 
 (defn q3-panel []
   [:div
-  [:h1 "When reviewing the mod against CAMS and the previous mod award, "
+  [:h1 
+   {:class :subtitle}
+   "When reviewing the mod against CAMS and the previous mod award, "
    [:br] "what things should you look for first?"]
    [q3]
    [modal]
@@ -281,7 +289,9 @@
 
 (defn q4-panel []
   [:div
-    [:h1 "After confirming the mod is correct, what should you do next?"]
+    [:h1 
+     {:class :subtitle}
+     "After receiving PM approval and confirming the mod is correct, what should you do next?"]
    [q4]
    [modal]
    [:div
@@ -296,7 +306,9 @@
 
 (defn q5-panel []
   [:div
-  [:h1 "After signing the mod, what is the last thing you should do?"]
+  [:h1 
+   {:class :subtitle}
+   "After signing the mod, what is the last thing you should do?"]
    [q5]
    [modal]
    [:div
@@ -323,14 +335,14 @@
 
 (defn end-panel []
   [:div
-   [:h1 "Wrapping up - click play on the video below to view a quick example"
-   [:br] "of how to process a modification for GSA07.MEGAStar."]
-   [:iframe {:width "600" :height "315"
-             :src "https://www.youtube.com/embed/tgbNymZ7vqY"}]
+   [:h1 
+    {:class :title}
+    "Wrapping up - view the video provided in your training packet titled 'Mod Review' "
+   [:br] "to follow the review process of a modification for the GSA07 Megastar contract."]
    [:div
     {:style {:cursor "pointer"}}
     [:a {:on-click #(re-frame/dispatch [::events/navigate :home])}
-     "home"]]])
+     "click here to go home"]]])
 
 (defmethod routes/panels :end-panel [] [end-panel])
 
