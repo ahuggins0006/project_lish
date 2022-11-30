@@ -70,7 +70,7 @@
     [:input {:type "radio" :id "b" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "dewey"} "Send to Contracts Management for review "]]
+    [:label {:for "dewey"} "Send to Contracts Management for review"]]
    [:div
     [:input {:type "radio" :id "c" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
@@ -80,7 +80,7 @@
     [:input {:type "radio" :id "d" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "lish"} "Enter a PACMN ticket"]]
+    [:label {:for "lish"} "Enter a PACMN ticket request"]]
    ])
 
 (defn q3 []
@@ -90,22 +90,22 @@
     [:input {:type "radio" :id "a" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "huey"} "Execution date"]]
+    [:label {:for "huey"} "Mod effective date"]]
    [:div
     [:input {:type "radio" :id "b" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [hello "This is my reason!" :q4]
                                                                                         :size :small}])}]
-    [:label {:for "dewey"} "PoP, Previous Funding Value, Ceiling Value, and Mod number"]]
+    [:label {:for "dewey"} "Period of Performance, Funding and Ceiling value, and Mod number"]]
    [:div
     [:input {:type "radio" :id "c" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "louie"} "Rates and Labor Category changes"]]
+    [:label {:for "louie"} "Labor Rates and Category changes"]]
    [:div
     [:input {:type "radio" :id "d" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "lish"} "Terms and Conditions changes"]]
+    [:label {:for "lish"} "Contract or Task Order Terms and Conditions changes"]]
    ])
 
 (defn q4 []
@@ -120,7 +120,7 @@
     [:input {:type "radio" :id "b" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "dewey"} "Enter a PACMN ticket"]]
+    [:label {:for "dewey"} "Enter a PACMN ticket request"]]
    [:div
     [:input {:type "radio" :id "c" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [hello "This is my reason!" :q5]
@@ -140,7 +140,7 @@
     [:input {:type "radio" :id "a" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "huey"} "Create a Mod in CAMS"]]
+    [:label {:for "huey"} "Send to Contracts Management for review"]]
    [:div
     [:input {:type "radio" :id "b" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
@@ -150,12 +150,12 @@
     [:input {:type "radio" :id "c" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [good-bye]
                                                                                         :size :small}])}]
-    [:label {:for "louie"} "Enter a PACMN ticket"]]
+    [:label {:for "louie"} "Enter a PACMN ticket request"]]
    [:div
     [:input {:type "radio" :id "d" :name "drone" :on-click #(re-frame/dispatch [:modal {:show? true
                                                                                         :child [hello "This is my reason!" :end]
                                                                                         :size :small}])}]
-    [:label {:for "lish"} "Send the signed Mod to the customer"]]
+    [:label {:for "lish"} "Send the signed Mod back to the customer"]]
    ])
 
 (defn q6 []
@@ -227,11 +227,11 @@
     [:div
      [:h1
       {:class :title}
-      (str "Welcome to Contracts - let's get started by learning about Modifications." )]
+      (str "Welcome to Contracts! Let's get started by learning about Modifications." )]
      [:div
       {:style {:cursor "pointer"}}
       [:a {:on-click #(re-frame/dispatch [::events/navigate :q1])}
-       "Click Here to Begin!"]]
+       "Click here to begin!"]]
      ]))
 
 (defmethod routes/panels :home-panel [] [home-panel])
@@ -259,7 +259,7 @@
   [:div
     [:h1 
      {:class :subtitle}
-     "After receiving PM approval, what should you do next?"] 
+     "While waiting for PM approval, what should you begin doing?"] 
    [q2]
    [modal]
    [:div
@@ -275,8 +275,8 @@
   [:div
   [:h1 
    {:class :subtitle}
-   "When reviewing the mod against CAMS and the previous mod award, "
-   [:br] "what things should you look for first?"]
+   "When reviewing the mod against CAMS and the previous mod or award, "
+   [:br] "what types of things should you look for first?"]
    [q3]
    [modal]
    [:div
@@ -291,7 +291,7 @@
   [:div
     [:h1 
      {:class :subtitle}
-     "After receiving PM approval and confirming the mod is correct, what should you do next?"]
+     "After receiving PM approval and confirming that the mod is correct, what should you do next?"]
    [q4]
    [modal]
    [:div
@@ -335,14 +335,22 @@
 
 (defn end-panel []
   [:div
-   [:h1 
+   [:h1
     {:class :title}
-    "Wrapping up - view the video provided in your training packet titled 'Mod Review' "
-   [:br] "to follow the review process of a modification for the GSA07 Megastar contract."]
+    "After sending the signed mod to the customer, you will wait for a fully executed modification "
+    [:br] "to be sent back before moving on to the next steps."
+    [:br]
+    [:div
+     {:class :subtitle}
+     [:br] "Along the way, you should save each iteration of the mod to the Contract Folder."
+     [:br]
+     [:br] 
+     [:pre "To continue learning, view the video provided in your training packet titled 'Mod Review' to follow the review process"
+            [:br] "of a modification for the GSA07 Megastar contract."]]]
    [:div
     {:style {:cursor "pointer"}}
     [:a {:on-click #(re-frame/dispatch [::events/navigate :home])}
-     "click here to go home"]]])
+     "Click here to go home"]]])
 
 (defmethod routes/panels :end-panel [] [end-panel])
 
